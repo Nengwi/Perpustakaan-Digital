@@ -6,5 +6,5 @@ Route::get('/template', function() {
     return view('template');
 });
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.layouts.wrapper');
 });
