@@ -17,3 +17,11 @@ Route::get('/user', function () {
     return view('admin.layouts.wrapper', $data);
 });
 
+Route::get('/post', function () {
+    $data = [
+        'content'  => 'admin.post.index'
+    ];
+    return view('admin.layouts.wrapper', $data);
+});
+
+
