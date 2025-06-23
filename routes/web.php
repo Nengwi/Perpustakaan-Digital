@@ -7,7 +7,10 @@ Route::get('/template', function() {
 });
 
 Route::get('/', function () {
-    return view('admin.layouts.wrapper');
+    $data = [
+        'content'   => 'admin.dashboard.index'
+    ];
+    return view('admin.layouts.wrapper', $data);
 });
 
 Route::get('/user', function () {
