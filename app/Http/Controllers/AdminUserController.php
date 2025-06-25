@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Promise\Create;
+use App\Models\User;
+
 
 class AdminUserController extends Controller
 {
@@ -13,6 +16,7 @@ class AdminUserController extends Controller
     {
         //
         $data = [
+            'user'     => User::get(),
             'content'  => 'admin.user.index'
         ];
         return view('admin.layouts.wrapper', $data);
@@ -36,6 +40,15 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            're_password' => 'required|same:password',
+        ]);
+        
+        User::create($data);
+        return redirect('/admin/user');
     }
 
     /**
