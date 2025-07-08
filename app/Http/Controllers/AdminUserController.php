@@ -52,7 +52,7 @@ class AdminUserController extends Controller
         $data['password'] = Hash::make($data['password']);
         
         User::create($data);
-        return redirect('/admin/user');
+        return redirect('/admin/user')->with('success', 'Data telah ditambahkan!!');
     }
 
     /**
@@ -97,7 +97,7 @@ class AdminUserController extends Controller
          }
             
          $user->update($data);
-        return redirect('/admin/user');
+        return redirect('/admin/user')->with('success', 'Data telah diedit!!');
     }
 
     /**
@@ -106,5 +106,8 @@ class AdminUserController extends Controller
     public function destroy(string $id)
     {
         //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin/user')->with('success', 'Data telah dihapus!!');
     }
 }
