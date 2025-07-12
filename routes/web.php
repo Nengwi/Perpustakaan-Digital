@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAnggotaController;
 use App\Http\Controllers\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
@@ -23,6 +24,7 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         ];
         return view('admin.layouts.wrapper', $data);
     });
+    Route::resource('/master/anggota', AdminAnggotaController::class);
     Route::resource('/user', AdminUserController::class );
 });
 

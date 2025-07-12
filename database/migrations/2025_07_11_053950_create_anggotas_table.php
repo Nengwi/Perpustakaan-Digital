@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('foto')->nullable();
+            $table->enum('status_pinjam', ['Pinjam', 'Bebas' ]);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
