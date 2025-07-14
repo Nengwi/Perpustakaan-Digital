@@ -48,9 +48,9 @@ class AdminAnggotaController extends Controller
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'no_hp' => 'required'
-            
+
         ]);
-        Anggota::create ($data);
+        Anggota::create($data);
         alert::success('Sukses', 'Data telah ditambahkan!');
         return redirect()->back();
     }
@@ -69,6 +69,12 @@ class AdminAnggotaController extends Controller
     public function edit(string $id)
     {
         //
+        $anggota = Anggota::find($id);
+        $data = [
+            'anggota' => $anggota,
+            'content' => 'admin.anggota.add'
+        ];
+        return view('admin.layouts.wrapper', $data);
     }
 
     /**
@@ -77,6 +83,20 @@ class AdminAnggotaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $anggota = Anggota::find($id);
+        $data = $request->validate([
+           'nis' => 'required|unique:anggotas,nis,' . $anggota->id,
+            'namalengkap' => 'required',
+            'jurusan' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp' => 'required',
+
+        ]);
+        $anggota->update($data);
+        alert::success('Sukses', 'Data telah diedit!');
+        return redirect()->back();
     }
 
     /**
