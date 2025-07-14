@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('nis')->unique();
             $table->string('namalengkap');
             $table->string('Jurusan');
-            $table->date('tangggal_lahir');
             $table->date('tempat_lahir');
+            $table->date('tangal_lahir');
             $table->string('Jenis kelamin');
-            $table->string('alamat')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('foto')->nullable();
             $table->enum('status_pinjam', ['Pinjam', 'Bebas' ]);

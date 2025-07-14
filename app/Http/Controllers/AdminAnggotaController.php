@@ -38,7 +38,13 @@ class AdminAnggotaController extends Controller
         //
         $data = $request->validate([
             'nis' => 'required',
-            'nama' => 'required'
+            'nama' => 'required',
+            'jurusan' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp' => 'required'
+            
         ]);
     }
 
