@@ -87,7 +87,7 @@ class AdminUserController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            // 'password' => 'required',
+            'password' => 'required',
             're_password' => 'same:password',
         ]);
                

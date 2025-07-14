@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Anggota;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdminAnggotaController extends Controller
 {
@@ -13,6 +16,7 @@ class AdminAnggotaController extends Controller
     {
         //
         $data = [
+            'anggota' => Anggota::get(),
             'content' => 'admin.anggota.index'
         ];
         return view('admin.layouts.wrapper', $data);
@@ -37,8 +41,8 @@ class AdminAnggotaController extends Controller
     {
         //
         $data = $request->validate([
-            'nis' => 'required',
-            'nama' => 'required',
+            'nis' => 'required|unique:anggotas ',
+            'namalengkap' => 'required',
             'jurusan' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -46,6 +50,9 @@ class AdminAnggotaController extends Controller
             'no_hp' => 'required'
             
         ]);
+        Anggota::create ($data);
+        alert::success('Sukses', 'Data telah ditambahkan!');
+        return redirect()->back();
     }
 
     /**
